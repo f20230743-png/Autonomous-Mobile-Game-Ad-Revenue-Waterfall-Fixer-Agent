@@ -8,21 +8,6 @@ OpenMediation is a fully open mediation platform, providing an end-to-end system
 - Header bidding in compliance with IAB specifications is supported to maximize revenue through realtime bidding. OpenMediation has built-in support for Facebook bidding. Its SDK auction mechanism brings flexibility and convenience by eliminating the need for an auction server. The Auction process works perfectly together with traditional waterfall. Before the waterfall starts, the auction returns a bid winner from Facebook and other AdNetworks that support header bidding. The waterfall winner, coming out of the waterfall process that is largely based on historical data, is compared with the bid winner to eventually determine the final winner.
 - Docker container images and deployment automation on popular public cloud such as AWS ECS/EKS, combined with S3 + Athena lightweight data analytics solutions, makes running a powerful advertising mediation system easy
 
-The OpenMediation project includes three parts: server, dashboard, and SDK. It is divided into seven sub-projects, as follows:
-
-- [OM-Server](https://github.com/AdTiming/OM-Server): Mediation server core module, responsible for SDK access and mediation logic processing, data collection processing
-
-- [OM-ADC](https://github.com/AdTiming/OM-ADC): Data aggregation module, responsible for aggregating revenue data from AdNetworks for business reports generation
-
-- [OM-DTask](https://github.com/AdTiming/OM-Dtask): Data configuration center, which stores key configuration information for OM-Server, such as kafka, S3, etc. Also includes data processing code for AWS Athena based data analytics and report generation
-
-- [OM-Android-SDK](https://github.com/AdTiming/OpenMediation-Android): Android Mediation SDK, responsible for mediating third-party AdNetwork Android SDKs
-
-- [OM-iOS-SDK](https://github.com/AdTiming/OpenMediation-iOS): iOS Mediation SDK, responsible for mediating third-party AdNetwork iOS SDKs
-
-- [OM-Dashboard-UI](https://github.com/AdTiming/OM-Dashboard-UI): Dashboard frontend
-
-- [OM-Dashboard-Server](https://github.com/AdTiming/OM-Dashboard-Server): Dashboard backend
 
 ## Docker images on docker hub
 
@@ -37,9 +22,6 @@ Check each container's log output like this:
 
     docker exec -it $(docker ps | grep omserver | awk '{print $1}' ) tail -f /om-server/log/stdout.log
 
-## DB init
-
-Run [DB init script](https://github.com/AdTiming/OpenMediation/blob/master/om-init.sql.gz) after creating your database. Recommended MySQL version: **5.7** or lower.
 
 ## AWS S3 and Athena 
 
@@ -77,13 +59,7 @@ Besides, an IAM role with proper S3 and Athena access needs to be created and as
    
 ## Bring your own IP Geolocation Database
 
-An IP Geolocation Database is used to help determine your app user's location. Put your own version of database in OM-Dtask's ./cache/ and implement [GeoService](https://github.com/AdTiming/OM-Server/blob/master/src/main/java/com/adtiming/om/server/service/GeoService.java) accordingly.
+An IP Geolocation Database is used to help determine your app user's location. Put your own version of database in OM-Dtask's ./cache/ and implement 
 
-## Add an unlisted AdNetwork to your mediation 
-Refer to  the [guide](https://github.com/AdTiming/OpenMediation/wiki#%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%AE%B6%E6%96%B0%E7%9A%84adnetwork%E9%9C%80%E8%A6%81%E7%9A%84%E6%AD%A5%E9%AA%A4) in the [Wiki section](https://github.com/AdTiming/OpenMediation/wiki).
 
-## Communication
-
-- If you **found a bug**, _and can provide steps to reliably reproduce it_, open an issue.
-- If you **have a feature request**, open an issue.
 
